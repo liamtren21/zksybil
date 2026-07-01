@@ -55,6 +55,12 @@ Stellar testnet lifecycle:
 The web demo is an evidence viewer over this recorded testnet run. It does not
 sign transactions and does not live-fetch Horizon/RPC in the browser.
 
+## Demo
+
+- Video walkthrough: https://youtu.be/BGh-fqsB4Ho
+- Web demo: https://zksybil.vercel.app
+- GitHub: https://github.com/liamtren21/zksybil
+
 ## Why It Matters
 
 Most sybil-resistant workflows need two properties that are often in tension:
