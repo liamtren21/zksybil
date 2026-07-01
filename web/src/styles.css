@@ -1,0 +1,878 @@
+:root {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --surface-warm: #fbfaf7;
+  --fg: #15130f;
+  --fg-2: #343026;
+  --muted: #6f6a5f;
+  --meta: #8a8376;
+  --border: #ded8cd;
+  --border-soft: #ece7dc;
+  --accent: #2457d6;
+  --accent-on: #ffffff;
+  --accent-hover: #1f4ab8;
+  --accent-active: #193c94;
+  --success: #167447;
+  --warn: #9d6b05;
+  --danger: #b3261e;
+  --motion-fast: 160ms;
+  --motion-base: 220ms;
+  --motion-page: 520ms;
+  --ease-standard: cubic-bezier(0.23, 1, 0.32, 1);
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --shadow-panel: 0 14px 34px rgba(50, 43, 31, 0.08);
+  color: var(--fg);
+  background: var(--bg);
+  font-family: var(--font-body);
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.workspace-rail {
+  position: sticky;
+  top: 0;
+  display: grid;
+  align-content: start;
+  gap: 22px;
+  height: 100vh;
+  padding: 22px;
+  border-right: 1px solid var(--border);
+  background: var(--surface-warm);
+  animation: rail-in var(--motion-page) var(--ease-standard) both;
+}
+
+.rail-logo {
+  display: block;
+  width: min(100%, 188px);
+  text-decoration: none;
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.rail-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rail-logo:hover {
+  transform: translateY(-1px);
+}
+
+.rail-copy {
+  display: grid;
+  gap: 3px;
+  margin-top: -12px;
+}
+
+.rail-copy span,
+.eyebrow {
+  color: var(--meta);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rail-nav {
+  display: grid;
+  gap: 4px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.rail-nav a {
+  border-radius: var(--radius-sm);
+  color: var(--fg-2);
+  padding: 9px 10px;
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.rail-nav a:hover,
+.rail-nav a:focus-visible {
+  background: var(--surface);
+  color: var(--accent);
+  outline: none;
+}
+
+.rail-card {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  animation: panel-in var(--motion-page) var(--ease-standard) both;
+  animation-delay: 120ms;
+}
+
+.rail-card strong {
+  color: var(--success);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.rail-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.workspace-main {
+  min-width: 0;
+  padding: 24px clamp(18px, 4vw, 44px) 56px;
+}
+
+.workspace-topbar {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 auto 22px;
+  max-width: 1180px;
+  animation: panel-in var(--motion-page) var(--ease-standard) both;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+.workspace-topbar h1 {
+  max-width: 760px;
+  margin: 8px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 76px);
+  font-weight: 500;
+  line-height: 0.98;
+}
+
+.topbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.button {
+  display: inline-grid;
+  min-height: 42px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  background: var(--surface);
+  color: var(--fg);
+  font: 750 14px/1.2 var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease,
+    color var(--motion-fast) ease,
+    transform var(--motion-fast) var(--ease-standard);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-on);
+}
+
+.button.primary:hover {
+  background: var(--accent-hover);
+}
+
+.button.secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:focus-visible,
+.hash-link:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--accent), transparent 70%);
+  outline-offset: 2px;
+}
+
+.overview-grid,
+.claim-workspace,
+.workspace-grid {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  max-width: 1180px;
+  margin: 0 auto 16px;
+}
+
+.overview-grid {
+  grid-template-columns: 1.35fr repeat(3, minmax(150px, 0.55fr));
+  animation: panel-in var(--motion-page) var(--ease-standard) both;
+  animation-delay: 80ms;
+}
+
+.summary-card,
+.panel,
+.workflow-panel,
+.protocol-panel {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-panel);
+  transition:
+    border-color var(--motion-fast) ease,
+    box-shadow var(--motion-fast) ease,
+    transform var(--motion-fast) var(--ease-standard);
+}
+
+.summary-card:hover,
+.panel:hover,
+.workflow-panel:hover {
+  border-color: color-mix(in oklab, var(--accent), transparent 76%);
+  box-shadow: 0 18px 42px rgba(50, 43, 31, 0.11);
+  transform: translateY(-2px);
+}
+
+.summary-card {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  padding: 18px;
+}
+
+.summary-card strong {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.summary-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.claim-workspace {
+  grid-template-columns: minmax(0, 1fr) 316px;
+  align-items: stretch;
+  animation: panel-in var(--motion-page) var(--ease-standard) both;
+  animation-delay: 140ms;
+}
+
+.workflow-panel,
+.protocol-panel,
+.panel {
+  padding: clamp(18px, 2.6vw, 28px);
+}
+
+.workflow-header,
+.panel-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.workflow-header h2,
+.panel-title h2,
+.stage-card h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.panel-title p {
+  max-width: 520px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.step-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.step-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+  transition:
+    background var(--motion-base) ease,
+    border-color var(--motion-base) ease,
+    color var(--motion-base) ease,
+    transform var(--motion-base) var(--ease-standard);
+}
+
+.step-list li span {
+  display: grid;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.step-list li.current,
+.step-list li.done {
+  border-color: color-mix(in oklab, var(--accent), transparent 60%);
+  color: var(--fg);
+  background: color-mix(in oklab, var(--accent), transparent 94%);
+  transform: translateY(-1px);
+}
+
+.step-list li.current span,
+.step-list li.done span {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-on);
+}
+
+.step-list li.current span {
+  animation: step-pop 420ms var(--ease-standard) both;
+}
+
+.stage-card {
+  display: grid;
+  gap: 16px;
+  min-height: 314px;
+  align-content: start;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-warm);
+  animation: stage-in var(--motion-base) var(--ease-standard) both;
+}
+
+.stage-card p {
+  max-width: 640px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.step-number {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.data-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  max-width: 620px;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.success-note {
+  max-width: 620px;
+  padding: 13px 14px;
+  border: 1px solid color-mix(in oklab, var(--success), transparent 65%);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklab, var(--success), transparent 92%);
+  color: var(--success);
+  font-weight: 750;
+  animation: verified-in 520ms var(--ease-standard) both;
+}
+
+.workflow-note {
+  margin: 14px 0 0;
+  color: var(--meta);
+  font-size: 13px;
+}
+
+.protocol-panel {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  background: var(--fg);
+  color: var(--surface);
+}
+
+.protocol-panel .eyebrow,
+.protocol-panel dt,
+.protocol-panel p {
+  color: #c9c2b5;
+}
+
+.boundary-step {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-sm);
+}
+
+.boundary-step strong {
+  color: #ffffff;
+}
+
+.boundary-step span {
+  color: #c9c2b5;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.boundary-step.public strong {
+  color: #9be0ba;
+}
+
+.connector {
+  width: 1px;
+  height: 28px;
+  margin-left: 18px;
+  background: rgba(255, 255, 255, 0.22);
+  transform-origin: top;
+  animation: connector-in 620ms var(--ease-standard) both;
+}
+
+.mini-facts {
+  display: grid;
+  margin: 6px 0 0;
+}
+
+.mini-facts div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mini-facts dd {
+  margin: 0;
+  color: #ffffff;
+  font-weight: 750;
+  text-align: right;
+}
+
+.panel {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto 16px;
+  animation: panel-in var(--motion-page) var(--ease-standard) both;
+  animation-delay: 180ms;
+}
+
+.workspace-grid.two .panel {
+  margin: 0;
+}
+
+.evidence-table {
+  display: grid;
+  gap: 8px;
+}
+
+.evidence-row {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) minmax(180px, auto);
+  gap: 16px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: var(--surface-warm);
+  transition: background var(--motion-fast) ease, transform var(--motion-fast) var(--ease-standard);
+}
+
+.evidence-row:hover {
+  background: var(--surface);
+  transform: translateX(2px);
+}
+
+.row-index {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--fg);
+  color: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.evidence-row:hover .row-index {
+  transform: scale(1.04);
+}
+
+.evidence-row h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+.hash-link {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color var(--motion-fast) ease;
+}
+
+.hash-link:hover {
+  color: var(--accent-hover);
+}
+
+.workspace-grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.input-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 22px;
+}
+
+.input-list li {
+  padding: 8px 0;
+}
+
+.fact-list,
+.boundary-list {
+  display: grid;
+  gap: 10px;
+}
+
+.fact-row {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.fact-row span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.fact-row strong {
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.boundary-list > div {
+  padding: 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: var(--surface-warm);
+}
+
+.boundary-list h3 {
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.boundary-list p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.code-value,
+.data-row code {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 4px 7px;
+  background: var(--surface-warm);
+  color: var(--fg-2);
+  font: 650 12px/1.35 var(--font-mono);
+}
+
+.status-chip {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 750;
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.status-chip.success {
+  animation: chip-in 480ms var(--ease-standard) both;
+}
+
+.status-chip.success {
+  border-color: color-mix(in oklab, var(--success), transparent 65%);
+  color: var(--success);
+  background: color-mix(in oklab, var(--success), transparent 93%);
+}
+
+.status-chip.warn {
+  border-color: color-mix(in oklab, var(--warn), transparent 65%);
+  color: var(--warn);
+  background: color-mix(in oklab, var(--warn), transparent 92%);
+}
+
+.command-block {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 0;
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  background: var(--fg);
+  color: #f7f5f0;
+  font: 13px/1.7 var(--font-mono);
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rail-in {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes stage-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes step-pop {
+  0% {
+    transform: scale(0.92);
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes connector-in {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes verified-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1040px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-rail {
+    position: static;
+    grid-template-columns: auto 1fr;
+    height: auto;
+  }
+
+  .rail-nav,
+  .rail-card {
+    grid-column: 1 / -1;
+  }
+
+  .rail-nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .overview-grid,
+  .claim-workspace,
+  .workspace-grid.two {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .workspace-main {
+    padding: 18px 14px 42px;
+  }
+
+  .workspace-topbar,
+  .workflow-header,
+  .panel-title {
+    display: grid;
+  }
+
+  .topbar-actions {
+    justify-content: flex-start;
+  }
+
+  .step-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stage-card {
+    min-height: 0;
+  }
+
+  .data-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .evidence-row {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
+  .evidence-row .hash-link {
+    grid-column: 2;
+  }
+
+  .fact-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .connector,
+  .evidence-row,
+  .panel,
+  .protocol-panel,
+  .rail-card,
+  .rail-mark,
+  .stage-card,
+  .status-chip,
+  .step-list li,
+  .step-list li.current span,
+  .success-note,
+  .summary-card,
+  .workflow-panel,
+  .workspace-rail,
+  .workspace-topbar,
+  .overview-grid,
+  .claim-workspace {
+    animation: none;
+    transition-duration: 0.01ms;
+  }
+}

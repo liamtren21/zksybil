@@ -1,0 +1,21 @@
+[package]
+name = "appgate"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["lib", "cdylib"]
+doctest = false
+
+[features]
+default = ["nethermind-verifier", "static-vk"]
+static-vk = []
+nethermind-verifier = ["dep:ultrahonk-soroban-verifier"]
+
+[dependencies]
+soroban-sdk = { workspace = true }
+ultrahonk-soroban-verifier = { git = "https://github.com/NethermindEth/rs-soroban-ultrahonk", rev = "661db07200f890b1bd9a7349ed787c70a706dd12", package = "ultrahonk_soroban_verifier", default-features = false, optional = true }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils", "alloc"] }

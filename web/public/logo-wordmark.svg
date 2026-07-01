@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 80" role="img" aria-label="zkSybil logo">
+  <rect x="8" y="8" width="64" height="64" rx="16" fill="#15130f"/>
+  <path d="M26 42c7.5-13.5 20.5-20 31-16.5" fill="none" stroke="#8dd6ad" stroke-width="3" stroke-linecap="round"/>
+  <path d="M23 52c11.5 4.8 25.8 1 33.5-9" fill="none" stroke="#f7f5f0" stroke-width="2.5" stroke-linecap="round" opacity=".78"/>
+  <circle cx="54" cy="26" r="3.8" fill="#2457d6"/>
+  <circle cx="26" cy="52" r="2.8" fill="#8dd6ad"/>
+  <path d="M29 33h15L29 50h16" fill="none" stroke="#f7f5f0" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M51 33c-4.2 0-6.7 1.7-6.7 4.3 0 5.6 11.7 2.5 11.7 9.3 0 3.3-3 5.4-8.1 5.4-3.1 0-5.8-.8-7.9-2.4" fill="none" stroke="#f7f5f0" stroke-width="3.4" stroke-linecap="round"/>
+  <text x="92" y="45" fill="#15130f" font-family="Georgia, 'Times New Roman', serif" font-size="35" font-weight="500">zkSybil</text>
+  <text x="94" y="63" fill="#6f6a5f" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">PRIVATE CLAIM EVIDENCE</text>
+</svg>

@@ -1,0 +1,32 @@
+{
+  "name": "zksybil",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "web:build": "cd web && vite build",
+    "web:dev": "cd web && vite --host 0.0.0.0",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.1",
+    "@vitejs/plugin-react": "^4.7.0",
+    "playwright": "^1.61.1",
+    "source-map-support": "^0.5.21",
+    "tsx": "^4.22.4",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6",
+    "vitest": "^3.2.6"
+  },
+  "dependencies": {
+    "@aztec/bb.js": "^0.87.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "version": "1.0.0",
+  "description": "zkSybil is a local proof-of-personhood hub built on Stellar Soroban. It demonstrates how to issue identity commitments, verify them through a Merkle tree using Noir and Poseidon2, and claim an airdrop via a scoped nullifier to guarantee uniqueness without sacrificing privacy.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
